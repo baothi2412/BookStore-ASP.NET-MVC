@@ -1,0 +1,153 @@
+﻿
+@model PagedList.IPagedList<Work.Models.author>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .dataTables_paginate {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+        .dataTables_paginate a {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+        }
+
+            .dataTables_paginate a.active,
+            .dataTables_paginate a:hover {
+                background-color: #007bff;
+                color: #fff;
+                border-color: #007bff;
+            }
+
+            .dataTables_paginate a.disabled {
+                pointer-events: none;
+                background-color: #ddd;
+                color: #777;
+                border-color: #ddd;
+            }
+
+    .dataTables_info {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item active"><a href="#"><b>Manage Authors</b></a></li>
+    </ul>
+    <div id="clock"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="row element-button">
+                    <div class="col-sm-2">
+                        <a class="btn btn-add btn-sm" href="@Url.Action("Create", "Authors")">
+                            <i class="fas fa-plus"></i>
+                            Create new author
+                        </a>
+                    </div>
+
+                  
+                </div>
+                <!-- Add other buttons here as per your requirements -->
+            </div>
+
+            <div class="row">
+                
+               
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover table-bordered" id="datatable" role="grid" aria-describedby="sampleTable_info">
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Phone
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.authorID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.authorName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.phone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.description)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.authorID }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.authorID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.authorID })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="dataTables_info" id="sampleTable_info" role="status" aria-live="polite">
+                        Trang @Model.PageNumber / @Model.PageCount
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="dataTables_paginate paging_simple_numbers" id="sampleTable_paginate">
+
+
+                        <!-- Custom "Next" and "Previous" buttons -->
+                        <a href="@Url.Action("Index", new { page = Model.PageNumber - 1 })" class="btn btn-default @(Model.HasPreviousPage ? "" : "disabled")">Lùi</a>
+
+                        @for (int i = 1; i <= Model.PageCount; i++)
+                        {
+                            <a href="@Url.Action("Index", new { page = i })" class="btn btn-default @(i == Model.PageNumber ? "active" : "")">@i</a>
+                        }
+
+                        <a href="@Url.Action("Index", new { page = Model.PageNumber + 1 })" class="btn btn-default @(Model.HasNextPage ? "" : "disabled")">Tiếp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

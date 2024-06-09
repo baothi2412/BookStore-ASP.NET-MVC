@@ -1,0 +1,356 @@
+﻿@model PagedList.IPagedList<Work.Models.product>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Pagination styles */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+        .pagination li {
+            list-style: none;
+            margin: 0 5px;
+        }
+
+        .pagination a, .pagination span {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+            .pagination a:hover {
+                background-color: #f2f2f2;
+            }
+
+        .pagination .active a {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination .disabled a {
+            color: #ddd;
+            cursor: not-allowed;
+        }
+
+        /* Previous and Next button styles */
+        .pagination .prev-next a {
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+
+            .pagination .prev-next a:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+
+    .noUi-target, .noUi-target * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -ms-touch-action: none;
+        touch-action: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .noUi-target {
+        position: relative;
+        direction: ltr;
+    }
+
+    .noUi-base {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+        /* Fix 401 */
+    }
+
+    .noUi-origin {
+        position: absolute;
+        right: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    .noUi-handle {
+        position: relative;
+        z-index: 1;
+    }
+
+    .noUi-stacking .noUi-handle {
+        /* This class is applied to the lower origin when
+      its values is > 50%. */
+        z-index: 10;
+    }
+
+    .noUi-state-tap .noUi-origin {
+        -webkit-transition: left 0.3s,top .3s;
+        transition: left 0.3s,top .3s;
+    }
+
+    .noUi-state-drag * {
+        cursor: inherit !important;
+    }
+
+    /* Painting and performance;
+    * Browsers can paint handles in their own layer.
+    */
+    .noUi-base, .noUi-handle {
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+
+    /* Slider size and handle placement;
+    */
+    .noUi-horizontal {
+        height: 4px;
+    }
+
+        .noUi-horizontal .noUi-handle {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            left: -7px;
+            top: -7px;
+            background-color: #345DBB;
+        }
+
+    /* Styling;
+    */
+    .noUi-background {
+        background: #D6D7D9;
+    }
+
+    .noUi-connect {
+        background: #345DBB;
+        -webkit-transition: background 450ms;
+        transition: background 450ms;
+    }
+
+    .noUi-origin {
+        border-radius: 2px;
+    }
+
+    .noUi-target {
+        border-radius: 2px;
+    }
+
+        .noUi-target.noUi-connect {
+        }
+
+    /* Handles and cursors;
+    */
+    .noUi-draggable {
+        cursor: w-resize;
+    }
+
+    .noUi-vertical .noUi-draggable {
+        cursor: n-resize;
+    }
+
+    .noUi-handle {
+        cursor: default;
+        -webkit-box-sizing: content-box !important;
+        -moz-box-sizing: content-box !important;
+        box-sizing: content-box !important;
+    }
+
+        .noUi-handle:active {
+            border: 8px solid #345DBB;
+            border: 8px solid rgba(53,93,187,0.38);
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            left: -14px;
+            top: -14px;
+        }
+
+    /* Disabled state;
+    */
+    [disabled].noUi-connect, [disabled] .noUi-connect {
+        background: #B8B8B8;
+    }
+
+    [disabled].noUi-origin, [disabled] .noUi-handle {
+        cursor: not-allowed;
+    }
+
+   
+</style>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,600" rel="stylesheet">
+<link href="https://pennypixels.pennymacusa.com/css/1_4_1/pp.css" rel="stylesheet">
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="/home/index">Home</a>
+                <a class="breadcrumb-item text-dark" href="/product/shop">Shop</a>
+                <span class="breadcrumb-item active">Shop List</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Start -->
+<style>
+    .bg-light-hover {
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .bg-light-hover:hover {
+            transform: scale(1.05);
+        }
+
+    .bg-light-content {
+        background-color: #ffe600; /* Vibrant yellow color */
+        border-radius: 10px; /* Rounded corners for a smoother look */
+        padding: 20px; /* Adjust padding as needed */
+    }
+
+        .bg-light-content h1, .bg-light-content h5 {
+            color: #ffffff; /* White text for better visibility on yellow background */
+        }
+</style>
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-4">
+            <!-- Price Start -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Shradha Book Store</span></h5>
+            <div class="bg-light p-4 mb-30">
+                <form>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3 bg-light-hover">
+                        <div class="d-flex align-items-center mb-4" style="padding: 30px;">
+                            <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                            <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+                        </div>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3 bg-light-hover">
+                        <div class="d-flex align-items-center mb-4" style="padding: 30px;">
+                            <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                            <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+                        </div>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3 bg-light-hover">
+                        <div class="d-flex align-items-center mb-4" style="padding: 30px;">
+                            <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                            <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                        </div>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3 bg-light-hover">
+                        <div class="d-flex align-items-center mb-4" style="padding: 30px;">
+                            <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                            <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Price End -->
+            <!-- Color Start -->
+            <!-- Size End -->
+        </div>
+        <!-- Shop Sidebar End -->
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        
+                    </div>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="product-item bg-light mb-4">
+                            <div class="product-img position-relative overflow-hidden">
+                                <a href="@Url.Action("Shopdetail", "Product", new { id = item.productID })">
+                                    <img class="img-fluid w-100" style="max-width: 400px; max-height: 400px" src="~/Content/client/@item.avatar" alt="">
+                                </a>
+                                <div class="product-action">
+                                    <a class="btn btn-outline-dark btn-square" href="/home/addtocart?productID=@item.productID"><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center py-4">
+                                <a class="h6 text-decoration-none text-truncate" href="@Url.Action("Shopdetail", "Product", new { id = item.productID })">@item.productName</a>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>@item.price $</h5><h6 class="text-muted ml-2"><del>@item.sale</del></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small>(99)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+                <div class="col-12">
+                    @if (Model.TotalItemCount > 6)
+                    {
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                @if (Model.HasPreviousPage)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Shop", new { page = Model.PageNumber - 1 })">Previous</a>
+                                    </li>
+                                }
+
+                                @for (int i = 1; i <= Model.PageCount; i++)
+                                {
+                                    <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                                        <a class="page-link" href="@Url.Action("Shop", new { page = i })">@i</a>
+                                    </li>
+                                }
+
+                                @if (Model.HasNextPage)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Shop", new { page = Model.PageNumber + 1 })">Next</a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    }
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+
+<!-- Shop End -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>

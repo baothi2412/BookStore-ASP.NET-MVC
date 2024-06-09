@@ -1,0 +1,132 @@
+﻿@model Work.Models.subcategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    /* Container styling */
+ 
+
+    /* Header styling */
+    h2 {
+        color: #000000;
+        text-align: center;
+    }
+
+    /* List styling */
+    .dl-horizontal {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .dl-horizontal dt,
+        .dl-horizontal dd {
+            flex: 0 0 50%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+            text-align: center;
+            background-color: #808080;
+            color: #fff;
+        }
+
+        .dl-horizontal dd {
+            background-color: #f8f8f8;
+        }
+
+    a.edit-button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-right: 10px;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        background-color: #808080;
+    }
+
+    a.back-button {
+        background-color: #e53935;
+    }
+
+    /* Action links styling */
+
+</style>
+
+<div>
+    <h2>subcategory</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.subcategoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subcategoryID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.subcategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subcategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoryID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.supplierID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplierID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.createAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updateAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updateAt)
+        </dd>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.subcategoryID }, new { @class = "button edit-button" }) |
+            @Html.ActionLink("Back to List", "Index", new { @class = "button back-button" })
+        </p>
+    </dl>
+   
+</div>
+

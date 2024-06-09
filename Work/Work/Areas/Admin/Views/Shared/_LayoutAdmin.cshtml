@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shradha Book Store | Admin</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="/Content/admin/doc/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- or -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    @**@
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="/Content/admin/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    @RenderSection("Scripts", required: false)
+</head>
+
+<body onload="time()" class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header">
+        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+                                        aria-label="Hide Sidebar"></a>
+        <!-- Navbar Right Menu-->
+        <ul class="app-nav">
+
+
+            <!-- User Menu-->
+            <li>
+                <a class="app-nav__item" href="/index.html"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+
+            </li>
+        </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+        <div class="app-sidebar__user">
+            <img class="app-sidebar__user-avatar" src="~/Content/admin/images/admin.png" width="50px"
+                 alt="User Image">
+            <div>
+                <p class="app-sidebar__user-name"><b>Admin</b></p>
+                <p class="app-sidebar__user-designation">Shradha Book Store</p>
+            </div>
+        </div>
+        <hr>
+        <ul class="app-menu">
+            <li>
+                <a class="app-menu__item active haha" href="#">
+                    <i class='app-menu__icon bx bx-tachometer'></i><span class="app-menu__label">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class="app-menu__item" href="@Url.Action("Index", "Users", new { area = "admin" })">
+                    <i class='app-menu__icon bx bx-id-card'></i> <span class="app-menu__label">Manage Customers</span>
+                </a>
+            </li>
+            <li>
+                <a class="app-menu__item" href="@Url.Action("Index", "Products", new { area = "admin" })">
+                    <i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Manage Products</span>
+                </a>
+            </li>
+            <li>
+                <a class="app-menu__item" href="@Url.Action("Index", "Categories", new { area = "admin" })">
+                    <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Manage Categories</span>
+                </a>
+            </li>
+            <li>
+                <a class="app-menu__item" href="@Url.Action("Index", "Subcategories", new { area = "admin" })">
+                    <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Manage Subcategories</span>
+                </a>
+            </li>
+            <li>
+                <a class="app-menu__item" href="@Url.Action("Orders", "Home", new { area = "admin" })">
+                    <i class='app-menu__icon bx bx-cart-alt'></i>
+                    <span class="app-menu__label">Manage Orders</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="app-menu__item" href="@Url.Action("Index", "Authors", new { area = "admin" })">
+                    <i class='app-menu__icon bx bx-user-voice'></i><span class="app-menu__label">Manage Authors</span>
+                </a>
+            </li>
+
+
+
+            <li>
+                <a class="app-menu__item" href="@Url.Action("Index", "Suppliers", new { area = "admin" })">
+                    <i class='app-menu__icon bx bx-run'></i><span class="app-menu__label">Manage Suppliers</span>
+                </a>
+            </li>
+            <li>
+                <a class="app-menu__item" href="@Url.Action("Index", "Payments", new { area = "admin" })">
+                    <i class='app-menu__icon bx bx-dollar'></i><span class="app-menu__label">Manage Payments</span>
+                </a>
+            </li>
+            <li>
+                <a class="app-menu__item" href="@Url.Action("Deliveries", "Home", new { area = "admin" })">
+                    <i class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Manage Deliveries</span>
+                </a>
+            </li>
+         
+        </ul>
+
+    </aside>
+    <main class="app-content">
+        @RenderBody()
+
+        <div class="text-center" style="font-size: 13px">
+            <p>
+                <b>
+                    Copyright
+                    <script type="text/javascript">
+                        document.write(new Date().getFullYear());
+                    </script> Shradha Book Store | Group 01
+                </b>
+            </p>
+        </div>
+    </main>
+    <script src="/Content/admin/doc/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/admin/doc/js/popper.min.js"></script>
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/admin/doc/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/admin/doc/js/main.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/admin/doc/js/plugins/pace.min.js"></script>
+    <!--===============================================================================================-->
+    <script type="text/javascript" src="/Content/admin/doc/js/plugins/chart.js"></script>
+    <!--===============================================================================================-->
+    <script src="/Content/admin/assets/js/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+
+    <!-- Responsive examples -->
+    <script src="/Content/admin/datatables/dataTables.responsive.min.js"></script>
+    <script src="/Content/admin/datatables/responsive.bootstrap4.min.js"></script>
+
+    <!-- Datatable init js -->
+    <script src="/Content/admin/assets/js/datatables.js"></script>
+    <script type="text/javascript">
+        var data = {
+            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6"],
+            datasets: [{
+                label: "Dữ liệu đầu tiên",
+                fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+                strokeColor: "rgb(255, 212, 59)",
+                pointColor: "rgb(255, 212, 59)",
+                pointStrokeColor: "rgb(255, 212, 59)",
+                pointHighlightFill: "rgb(255, 212, 59)",
+                pointHighlightStroke: "rgb(255, 212, 59)",
+                data: [20, 59, 90, 51, 56, 100]
+            },
+            {
+                label: "Dữ liệu kế tiếp",
+                fillColor: "rgba(9, 109, 239, 0.651)  ",
+                pointColor: "rgb(9, 109, 239)",
+                strokeColor: "rgb(9, 109, 239)",
+                pointStrokeColor: "rgb(9, 109, 239)",
+                pointHighlightFill: "rgb(9, 109, 239)",
+                pointHighlightStroke: "rgb(9, 109, 239)",
+                data: [48, 48, 49, 39, 86, 10]
+            }
+            ]
+        };
+        var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+        var lineChart = new Chart(ctxl).Line(data);
+
+        var ctxb = $("#barChartDemo").get(0).getContext("2d");
+        var barChart = new Chart(ctxb).Bar(data);
+    </script>
+    <script type="text/javascript">
+        //Thời Gian
+        function time() {
+            var today = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Chủ Nhật";
+            weekday[1] = "Thứ Hai";
+            weekday[2] = "Thứ Ba";
+            weekday[3] = "Thứ Tư";
+            weekday[4] = "Thứ Năm";
+            weekday[5] = "Thứ Sáu";
+            weekday[6] = "Thứ Bảy";
+            var day = weekday[today.getDay()];
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            nowTime = h + " giờ " + m + " phút " + s + " giây";
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+            tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                '</span>';
+            document.getElementById("clock").innerHTML = tmp;
+            clocktime = setTimeout("time()", "1000", "Javascript");
+
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
+        }
+    </script>
+</body>
+
+</html>

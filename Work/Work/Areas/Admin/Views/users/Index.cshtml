@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Work.Models.user>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item active"><a href="#"><b>Manage Users</b></a></li>
+    </ul>
+    <div id="clock"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="row element-button">
+                  
+                </div>
+                <!-- Add other buttons here as per your requirements -->
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="mt-0 header-title">Manage Users</h4>
+                            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.userName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.email)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.password)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.phone)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.gender)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.address)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.status)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.role)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.createAt)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.updateAt)
+                                        </th>
+                                        <th>Action</th>
+                                    </tr>
+                                <thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.userName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.password)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.phone)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.gender)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.address)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.status)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.role)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.createAt)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.updateAt)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.userID }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.userID }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.userID })
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

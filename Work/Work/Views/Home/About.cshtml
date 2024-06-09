@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+
+
+    #main-wrapper {
+        text-align: center;
+    }
+
+    .section {
+        padding: 30px 0;
+    }
+
+    .about-section {
+        background-color: #474e5d;
+        color: white;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .column {
+        width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 8px;
+    }
+
+    .team-area {
+        padding: 100px 0;
+    }
+
+        .team-area .section-heading {
+            margin-bottom: 80px;
+        }
+
+        .team-area .column {
+            width: 33.33%;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        .team-area .card {
+            margin: 0;
+        }
+
+    .funfact-section {
+        background-color: #fff;
+    }
+
+        .funfact-section .single-fact {
+            padding: 30px;
+        }
+
+    .client-section {
+        background-color: #f5f5f5;
+        padding: 90px 0;
+    }
+
+    .client-slider {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    h1 {
+        color: orange;
+        font-family: 'Agency FB';
+        font-size: 50px;
+    }
+
+    .specific-paragraph {
+        /* CSS styles chỉ áp dụng cho đoạn văn bản cụ thể */
+
+        font-size: 20px;
+    }
+    /* Thêm đoạn CSS mới */
+    .about-image img {
+        transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    }
+
+        .about-image img:hover {
+            transform: scale(1.1); /* Thay đổi kích thước khi hover */
+            filter: brightness(120%); /* Tăng độ sáng khi hover */
+        }
+    /* Thêm đoạn CSS mới */
+    .button1 {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #ff9800;
+        color: #fff;
+        border-radius: 5px;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+        .button1:hover {
+            background-color: #fff;
+            color: #ff9800;
+            transform: scale(1.05); /* Tăng kích thước khi hover */
+        }
+</style>
+
+<!-- Main Wrapper Start -->
+<div id="main-wrapper" class="section">
+
+
+    <!-- Header Section Start -->
+    <div class="header-section section">
+
+
+        <div class="about-section section pt-120 pb-90">
+            <div class="container">
+                <div class="row flex-row-reverse">
+
+                    <!-- About Image -->
+                    <div class="about-image col-lg-6 col-12 mb-30">
+                        <a class="video-popup" href="https://youtu.be/rhzji1vkym0?feature=shared"><img src="~/Content/client/img/about.jpg" alt="" width="400px"> </a>
+                    </div>
+
+                    <!-- Mission Content -->
+                    <div class="about-content col-lg-6 col-12 mb-30">
+                        <h1>About <span>Books</span></h1>
+                        <p class="specific-paragraph">Reading books brings numerous significant benefits for personal development and intellect. Firstly, engaging in the activity of reading helps broaden the knowledge and understanding of the reader on various topics. Exposure to literary, scientific, historical works, or simply fictional stories aids in expanding one's thinking and comprehension of the world around them.</p>
+                        <a href="/home/shop" class="button1">Shop Now</a>
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- About Section End-->
+        <!-- Team Section Start-->
+        <section class="team-area section-padding-100-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Section Heading -->
+                        <div class="section-heading text-center">
+                            <h2>OUR TEAM</h2>
+                            <p>A team of dedicated experienced professionals.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="column">
+                    <div class="card">
+                        <img src="~/Content/client/img/avt2.png" alt="Bao Thi" style="width:100%">
+                        <div class="container">
+                            <h2>Bao Thi</h2>
+                            <p class="title">Leader</p>
+                            <p>Shine like a star</p>
+                            <p>nnbthia22082@cusc.ctu.edu.vn</p>
+                            <p><button class="button">Contact</button></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card">
+                        <img src="~/Content/client/img/avt1.png" alt="Loc" style="width:100%">
+                        <div class="container">
+                            <h2> Huu Loc</h2>
+                            <p class="title">Member</p>
+                            <p>Do what you like, love what you do</p>
+                            <p>dhloca20084@cusc.ctu.edu.vn</p>
+                            <p><button class="button">Contact</button></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <img src="~/Content/client/img/avt3.png" alt="Quynh" style="width:100%">
+                        <div class="container">
+                            <h2> Diem Quynh</h2>
+                            <p class="title">Member</p>
+                            <p>Sunflower</p>
+                            <p>ndkdquynha22092@cusc.ctu.edu.vn</p>
+                            <p><button class="button">Contact</button></p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Funfact Section Start-->
+        <div class="funfact-section section pb-90">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Single Fact -->
+                    <div class="single-fact text-center col-sm-3 col-6 mb-30">
+                        <div class="wrap">
+                            <i class="fa fa-users"></i>
+                            <h2 class="counter">1100</h2>
+                            <p>Happy Clients</p>
+                        </div>
+                    </div>
+
+                    <!-- Single Fact -->
+                    <div class="single-fact text-center col-sm-3 col-6 mb-30">
+                        <div class="wrap">
+                            <i class="fa fa-trophy"></i>
+                            <h2 class="counter">90</h2>
+                            <p>Award Winning</p>
+                        </div>
+                    </div>
+
+                    <!-- Single Fact -->
+                    <div class="single-fact text-center col-sm-3 col-6 mb-30">
+                        <div class="wrap">
+                            <i class="fa fa-thumbs-up"></i>
+                            <h2 class="counter">230</h2>
+                            <p>Project Done</p>
+                        </div>
+                    </div>
+
+                    <!-- Single Fact -->
+                    <div class="single-fact text-center col-sm-3 col-6 mb-30">
+                        <div class="wrap">
+                            <i class="fa fa-coffee"></i>
+                            <h2 class="counter">350</h2>
+                            <p>Excellent feedback</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- Funfact Section End-->
+        <!-- Client Section Start-->
+
+
+
+
+
+    </div><!-- Main Wrapper End -->
+    <!-- JS
+    ============================================ -->
+    <!-- jQuery JS -->
+    <script src="js/vendor/jquery-1.12.0.min.js"></script>
+    <!-- Popper JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins JS -->
+    <script src="js/plugins.js"></script>
+    <!-- Ajax Mail JS -->
+    <script src="js/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="~/Content/client/js/main.js"></script>
+

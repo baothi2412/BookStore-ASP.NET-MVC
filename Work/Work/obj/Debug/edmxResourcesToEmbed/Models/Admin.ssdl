@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BookStore1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="authors">
+    <Key>
+      <PropertyRef Name="authorID" />
+    </Key>
+    <Property Name="authorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="authorName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" />
+    <Property Name="phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="description" Type="text" />
+  </EntityType>
+  <EntityType Name="bills">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="orderID" Type="int" Nullable="false" />
+    <Property Name="productID" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="paymentID" Type="int" />
+    <Property Name="price" Type="float" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="discount" Type="float" />
+  </EntityType>
+  <EntityType Name="categories">
+    <Key>
+      <PropertyRef Name="categoryID" />
+    </Key>
+    <Property Name="categoryID" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="categoryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="description" Type="text" />
+    <Property Name="status" Type="bit" />
+    <Property Name="createAt" Type="datetime" />
+    <Property Name="updateAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="deliveries">
+    <Key>
+      <PropertyRef Name="deliveryID" />
+    </Key>
+    <Property Name="deliveryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="deliveryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="distance" Type="float" />
+    <Property Name="price" Type="float" />
+  </EntityType>
+  <EntityType Name="FAQs">
+    <Key>
+      <PropertyRef Name="faqID" />
+    </Key>
+    <Property Name="faqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" />
+    <Property Name="content" Type="text" />
+  </EntityType>
+  <EntityType Name="favourite">
+    <Key>
+      <PropertyRef Name="favouriteID" />
+    </Key>
+    <Property Name="favouriteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" />
+    <Property Name="productID" Type="nvarchar" MaxLength="7" />
+    <Property Name="productName" Type="nvarchar" MaxLength="255" />
+    <Property Name="price" Type="float" />
+    <Property Name="avatar" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="feedback">
+    <Key>
+      <PropertyRef Name="feedbackID" />
+    </Key>
+    <Property Name="feedbackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="content" Type="text" />
+    <Property Name="createAt" Type="datetime" />
+    <Property Name="numberStars" Type="int" />
+    <Property Name="userID" Type="int" />
+    <Property Name="productID" Type="nvarchar" MaxLength="7" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderDate" Type="datetime" />
+    <Property Name="deliveryDate" Type="datetime" />
+    <Property Name="shipAddress" Type="nvarchar" MaxLength="255" />
+    <Property Name="note" Type="nvarchar" MaxLength="255" />
+    <Property Name="userID" Type="int" />
+    <Property Name="paymentID" Type="int" />
+    <Property Name="deliveryID" Type="int" />
+  </EntityType>
+  <EntityType Name="payments">
+    <Key>
+      <PropertyRef Name="paymentID" />
+    </Key>
+    <Property Name="paymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="paymentName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="description" Type="text" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="nvarchar" MaxLength="7" Nullable="false" />
+    <Property Name="productName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="description" Type="text" />
+    <Property Name="avatar" Type="nvarchar" MaxLength="255" />
+    <Property Name="status" Type="bit" />
+    <Property Name="price" Type="float" />
+    <Property Name="sale" Type="float" />
+    <Property Name="totalStart" Type="float" />
+    <Property Name="totalFeedback" Type="int" />
+    <Property Name="totalOrder" Type="int" />
+    <Property Name="createAt" Type="datetime" />
+    <Property Name="updateAt" Type="datetime" />
+    <Property Name="categoryID" Type="nvarchar" MaxLength="2" />
+    <Property Name="subcategoryID" Type="nvarchar" MaxLength="5" />
+    <Property Name="authorID" Type="int" />
+    <Property Name="supplierID" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="subcategories">
+    <Key>
+      <PropertyRef Name="subcategoryID" />
+    </Key>
+    <Property Name="subcategoryID" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="subcategoryName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="description" Type="text" />
+    <Property Name="status" Type="bit" />
+    <Property Name="createAt" Type="datetime" />
+    <Property Name="updateAt" Type="datetime" />
+    <Property Name="categoryID" Type="nvarchar" MaxLength="2" />
+    <Property Name="supplierID" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="suppliers">
+    <Key>
+      <PropertyRef Name="supplierID" />
+    </Key>
+    <Property Name="supplierID" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="supplierName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" />
+    <Property Name="phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="gender" Type="bit" />
+    <Property Name="address" Type="nvarchar" MaxLength="255" />
+    <Property Name="avatar" Type="nvarchar" MaxLength="255" />
+    <Property Name="status" Type="bit" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="createAt" Type="datetime" />
+    <Property Name="updateAt" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__bills__orderID__4D94879B">
+    <End Role="orders" Type="Self.orders" Multiplicity="1" />
+    <End Role="bills" Type="Self.bills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="bills">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bills__paymentID__4F7CD00D">
+    <End Role="payments" Type="Self.payments" Multiplicity="0..1" />
+    <End Role="bills" Type="Self.bills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payments">
+        <PropertyRef Name="paymentID" />
+      </Principal>
+      <Dependent Role="bills">
+        <PropertyRef Name="paymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__bills__productID__4E88ABD4">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="bills" Type="Self.bills" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="bills">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__favourite__produ__5629CD9C">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="favourite" Type="Self.favourite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="favourite">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__favourite__userI__5535A963">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="favourite" Type="Self.favourite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="favourite">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__feedback__produc__59FA5E80">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="feedback">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__feedback__userID__59063A47">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="feedback">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orders__userID__47DBAE45">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__products__author__440B1D61">
+    <End Role="authors" Type="Self.authors" Multiplicity="0..1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="authors">
+        <PropertyRef Name="authorID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="authorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__products__catego__4222D4EF">
+    <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__products__subcat__4316F928">
+    <End Role="subcategories" Type="Self.subcategories" Multiplicity="0..1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subcategories">
+        <PropertyRef Name="subcategoryID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="subcategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__products__suppli__44FF419A">
+    <End Role="suppliers" Type="Self.suppliers" Multiplicity="0..1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="suppliers">
+        <PropertyRef Name="supplierID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="supplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subcategories_categories">
+    <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+    <End Role="subcategories" Type="Self.subcategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="subcategories">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subcategories_suppliers">
+    <End Role="suppliers" Type="Self.suppliers" Multiplicity="0..1" />
+    <End Role="subcategories" Type="Self.subcategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="suppliers">
+        <PropertyRef Name="supplierID" />
+      </Principal>
+      <Dependent Role="subcategories">
+        <PropertyRef Name="supplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BookStore1ModelStoreContainer">
+    <EntitySet Name="authors" EntityType="Self.authors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bills" EntityType="Self.bills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="deliveries" EntityType="Self.deliveries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FAQs" EntityType="Self.FAQs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="favourite" EntityType="Self.favourite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subcategories" EntityType="Self.subcategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="suppliers" EntityType="Self.suppliers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__bills__orderID__4D94879B" Association="Self.FK__bills__orderID__4D94879B">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="bills" EntitySet="bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bills__paymentID__4F7CD00D" Association="Self.FK__bills__paymentID__4F7CD00D">
+      <End Role="payments" EntitySet="payments" />
+      <End Role="bills" EntitySet="bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__bills__productID__4E88ABD4" Association="Self.FK__bills__productID__4E88ABD4">
+      <End Role="products" EntitySet="products" />
+      <End Role="bills" EntitySet="bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__favourite__produ__5629CD9C" Association="Self.FK__favourite__produ__5629CD9C">
+      <End Role="products" EntitySet="products" />
+      <End Role="favourite" EntitySet="favourite" />
+    </AssociationSet>
+    <AssociationSet Name="FK__favourite__userI__5535A963" Association="Self.FK__favourite__userI__5535A963">
+      <End Role="users" EntitySet="users" />
+      <End Role="favourite" EntitySet="favourite" />
+    </AssociationSet>
+    <AssociationSet Name="FK__feedback__produc__59FA5E80" Association="Self.FK__feedback__produc__59FA5E80">
+      <End Role="products" EntitySet="products" />
+      <End Role="feedback" EntitySet="feedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK__feedback__userID__59063A47" Association="Self.FK__feedback__userID__59063A47">
+      <End Role="users" EntitySet="users" />
+      <End Role="feedback" EntitySet="feedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orders__userID__47DBAE45" Association="Self.FK__orders__userID__47DBAE45">
+      <End Role="users" EntitySet="users" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__products__author__440B1D61" Association="Self.FK__products__author__440B1D61">
+      <End Role="authors" EntitySet="authors" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__products__catego__4222D4EF" Association="Self.FK__products__catego__4222D4EF">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__products__subcat__4316F928" Association="Self.FK__products__subcat__4316F928">
+      <End Role="subcategories" EntitySet="subcategories" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__products__suppli__44FF419A" Association="Self.FK__products__suppli__44FF419A">
+      <End Role="suppliers" EntitySet="suppliers" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subcategories_categories" Association="Self.FK_subcategories_categories">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="subcategories" EntitySet="subcategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subcategories_suppliers" Association="Self.FK_subcategories_suppliers">
+      <End Role="suppliers" EntitySet="suppliers" />
+      <End Role="subcategories" EntitySet="subcategories" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

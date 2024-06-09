@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Work.Models.product>
+@{
+    Layout = null;
+}
+
+<!-- Add these script references in your HTML file -->
+
+
+<link href="~/Content/client/css/jquery-ui.css" rel="stylesheet">
+
+<div class="col-lg-4 col-6 text-left">
+    @using (Html.BeginForm("ProductCategory", "Danhmuc", FormMethod.Get))
+    {
+        <div class="input-group">
+            <input type="text" class="form-control" id="txtsearch" name="search" placeholder="Search for products">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-primary">
+                    <i class="fas fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    }
+</div>
+<div id="autocomplete-container"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="/Content/client/js/search.js"></script>
+

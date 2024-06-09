@@ -1,0 +1,122 @@
+﻿
+@using Work.Models;
+@{
+    CartShop c = ViewData["cartlist"] as CartShop;
+    order o = Work.App_Start.SessionConfig.GetOrder();
+    ViewBag.totalCart = Work.App_Start.SessionConfig.GetCartLits().cartItem();
+    user u = Work.App_Start.SessionConfig.GetUser();
+}
+
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <h3 class="breadcrumb-item text-dark">Order Success</h3>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Cart Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive bg-light p-30 mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Products</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @{
+                        foreach (bill b in c.orderedProduct.Values)
+                        {
+                            <tr>
+                                <td class="align-middle"><img src="~/Assets/client/@Common.GetImgOfProductByID(b.productID)" alt="" style="width: 50px;">@Common.GetNameOfProductByID(b.productID)</td>
+                                <td class="align-middle">$@b.price</td>
+                                <td class="align-middle">
+                                    <div class="input-group quantity mx-auto" style="width: 100px;">
+                                        <div class="input-group-btn">
+                                            <input type="hidden" class="btn btn-sm btn-primary btn-minus" value="@b.productID" name="productID" />
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="@b.quantity">
+                                        <div class="input-group-btn">
+                                            <input type="hidden" class="btn btn-sm btn-primary btn-plus" value="@b.productID" name="productID" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">$@c.moneyOfOneProduct(b)</td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-lg-4">
+            @*<form class="mb-30" action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary">Apply Coupon</button>
+                        </div>
+                    </div>
+                </form>*@
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order details information</span></h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="border-bottom pb-2">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>OrderID:</h6>
+                        <h6>@o.orderID</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>FullName:</h6>
+                        <h6>@u.userName</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Phone:</h6>
+                        <h6>@u.phone</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>OrderDate:</h6>
+                        <h6>@o.orderDate</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>DeliveryDate:</h6>
+                        <h6>@o.deliveryDate</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Address:</h6>
+                        <h6>@o.shipAddress</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Note:</h6>
+                        <h6>@o.note</h6>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Subtotal</h6>
+                        <h6>$@c.totalOfCartShop()</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">$2</h6>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Total</h5>
+                        <h5>$@(c.totalOfCartShop() + 2)</h5>
+                    </div>
+                    <a class="btn btn-block btn-primary font-weight-bold my-3 py-3" href="/home/index">Continue shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart End -->

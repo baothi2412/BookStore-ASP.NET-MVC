@@ -1,0 +1,203 @@
+﻿@model Work.Models.product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    /* Container styling */
+    
+
+    /* Header styling */
+    h2 {
+        color: #000000;
+        text-align: center;
+    }
+
+    /* List styling */
+    .dl-horizontal {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .dl-horizontal dt,
+        .dl-horizontal dd {
+            flex: 0 0 50%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+            text-align: center;
+            background-color: #808080;
+            color: #fff;
+        }
+
+        .dl-horizontal dd {
+            background-color: #f8f8f8;
+        }
+
+    a.edit-button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-right: 10px;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        background-color: #808080;
+    }
+
+    a.back-button {
+        background-color: #e53935;
+    }
+
+    /* Action links styling */
+
+</style>
+
+<div>
+    <h2>product</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.avatar)
+        </dt>
+
+        <dd>
+            @{
+                string relativeImagePath = Model.avatar;
+                string absoluteImagePath = Url.Content("~/Content/client/" + relativeImagePath);
+                <img src="@absoluteImagePath" height="100" width="100" alt="@Model.avatar" />
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplierID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplierID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updateAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updateAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalFeedback)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalFeedback)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.author.authorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.author.authorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subcategory.subcategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subcategory.subcategoryName)
+        </dd>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.productID }, new { @class = "button edit-button" }) |
+            @Html.ActionLink("Back to List", "Index", new { @class = "button back-button" })
+        </p>
+    </dl>
+  
+</div>
+
